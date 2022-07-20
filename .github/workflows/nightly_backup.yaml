@@ -22,10 +22,6 @@ jobs:
 
       - name: Build exporter
         working-directory: export-freshrss
-        env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
         run: npm run build
 
       - name: Export FreshRSS subscriptions
@@ -33,7 +29,8 @@ jobs:
           BASE_URL: ${{ secrets.BASE_URL }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: node export-freshrss/build/index.js
+        working-directory: export-freshrss
+        run: npm run start:prod
 
       - name: Test
         run: echo "Hello world!"

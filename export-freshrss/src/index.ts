@@ -7,9 +7,13 @@ import { auth, exportSubscriptions } from "./api";
 import fs from "fs";
 
 const main = async () => {
-  const token = await auth();
-  const subscriptionExports = await exportSubscriptions(token);
-  fs.writeFileSync("./export.opml", subscriptionExports);
+  try {
+    const token = await auth();
+    const subscriptionExports = await exportSubscriptions(token);
+    fs.writeFileSync("./export.opml", subscriptionExports);
+  } catch (e) {
+    process.exit(1);
+  }
 };
 
 main();
