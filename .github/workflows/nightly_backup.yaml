@@ -8,6 +8,7 @@ jobs:
   nightly:
     name: Backup nightly
     runs-on: ubuntu-latest
+    environment: FreshRSS
     steps:
       - uses: actions/checkout@v3
 
