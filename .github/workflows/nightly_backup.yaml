@@ -31,7 +31,10 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
         run: npm run start:prod
 
-      - name: 'Upload Artifact'
+      - name: Debug
+        run: ls -la
+
+      - name: Archive export
         uses: actions/upload-artifact@v3
         with:
           name: export.opml
