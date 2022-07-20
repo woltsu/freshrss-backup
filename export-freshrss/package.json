@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "ts-node src/index.ts",
+    "start:prod": "NODE_ENV=production node build/index.js",
     "build": "tsc"
   },
   "devDependencies": {
