@@ -16,9 +16,6 @@ jobs:
         with:
           node-version: 16
 
-      - name: debug
-        run: ls -la
-
       - name: Install dependencies
         working-directory: export-freshrss
         run: npm ci
@@ -28,6 +25,10 @@ jobs:
         run: npm run build
 
       - name: Export FreshRSS subscriptions
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: node export-freshrss/build/index.js
 
       - name: Test
