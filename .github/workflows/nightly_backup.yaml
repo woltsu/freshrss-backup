@@ -22,6 +22,10 @@ jobs:
 
       - name: Build exporter
         working-directory: export-freshrss
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: npm run build
 
       - name: Export FreshRSS subscriptions
