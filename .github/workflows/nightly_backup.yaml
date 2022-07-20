@@ -15,11 +15,11 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        working-directory: ./export-freshrss
+        working-directory: export-freshrss
         run: npm ci
 
       - name: Build exporter
-        working-directory: ./export-freshrss
+        working-directory: export-freshrss
         run: npm run build
 
       - name: Export FreshRSS subscriptions
