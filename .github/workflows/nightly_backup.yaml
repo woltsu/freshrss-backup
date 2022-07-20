@@ -9,31 +9,31 @@ jobs:
     name: Backup nightly
     runs-on: ubuntu-latest
     environment: FreshRSS
+    defaults:
+      run:
+        working-directory: export-freshrss
     steps:
       - uses: actions/checkout@v3
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
 
       - name: Install dependencies
-        working-directory: export-freshrss
         run: npm ci
 
       - name: Build exporter
-        working-directory: export-freshrss
         run: npm run build
-
-      - name: Test
-        run: echo "Hello world! ${{ secrets.BASE_URL }}"
 
       - name: Export FreshRSS subscriptions
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        working-directory: export-freshrss
         run: npm run start:prod
 
-
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
+        with:
+          name: export.opml
+          path: export.opml
+          retention-days: 7
