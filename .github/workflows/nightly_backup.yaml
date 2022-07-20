@@ -38,5 +38,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: export.opml
-          path: export.opml
+          path: ./export.opml
           retention-days: 7
