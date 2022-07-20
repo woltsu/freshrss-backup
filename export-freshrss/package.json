@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "build": "tsc"
   },
   "devDependencies": {
     "dotenv": "^16.0.1",

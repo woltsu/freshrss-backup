@@ -9,5 +9,21 @@ jobs:
     name: Backup nightly
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        working-directory: ./export-freshrss
+        run: npm ci
+
+      - name: Build exporter
+        working-directory: ./export-freshrss
+        run: npm run build
+
+      - name: Export FreshRSS subscriptions
+        run: node export-freshrss/build/index.js
+
       - name: Test
         run: echo "Hello world!"
