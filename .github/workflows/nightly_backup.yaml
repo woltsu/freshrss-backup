@@ -1,13 +1,13 @@
-name: Backup Nightly
+name: Monday Backup
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 2 * * *"
+    - cron: "0 2 * * 1"
 
 jobs:
-  nightly:
-    name: Backup nightly
+  backup:
+    name: Backup
     runs-on: ubuntu-latest
     environment: FreshRSS
     defaults:
@@ -39,3 +39,7 @@ jobs:
           name: export
           path: export-freshrss/export.opml
           retention-days: 7
+
+      # Prevent the scheduled action from becoming automatically
+      # disabled due to repository inactivity
+      - uses: gautamkrishnar/keepalive-workflow@v1
