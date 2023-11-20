@@ -20,6 +20,11 @@ jobs:
         with:
           node-version: 16
 
+      - name: Setup Tailscale
+        uses: tailscale/github-action@main
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
       - name: Install dependencies
         run: npm ci
 
