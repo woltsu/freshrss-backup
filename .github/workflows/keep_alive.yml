@@ -14,6 +14,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: gautamkrishnar/keepalive-workflow@05456e7809058d586d96392e99217726ccc10076
         with:
-          workflow_files: "weekly_backup.yml"
-          time_elapsed: 0
+          time_elapsed: 30
           use_api: false
