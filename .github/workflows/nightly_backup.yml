@@ -14,14 +14,14 @@ jobs:
       run:
         working-directory: export-freshrss
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
 
       - name: Setup Tailscale
-        uses: tailscale/github-action@main
+        uses: tailscale/github-action@4e4c49acaa9818630ce0bd7a564372c17e33fb4d
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
@@ -39,12 +39,8 @@ jobs:
         run: npm run start:prod
 
       - name: Archive export
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: export
           path: export-freshrss/export.opml
-          retention-days: 7
-
-      # Prevent the scheduled action from becoming automatically
-      # disabled due to repository inactivity
-      - uses: gautamkrishnar/keepalive-workflow@v1
+          retention-days: 14
