@@ -16,3 +16,4 @@ jobs:
         with:
           workflow_files: "weekly_backup.yml"
           time_elapsed: 0
+          use_api: false
